@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Cache files
+anime_cache.json
+
+# Generated reports
+report.html
+report.md
+*.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local

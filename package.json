@@ -1,0 +1,30 @@
+{
+  "name": "that-time-i-got-reincarnated-as-a-spreadsheet",
+  "version": "1.0.0",
+  "description": "A Node.js tool to aggregate anime ratings from multiple sources (MyAnimeList, AniList, IMDb) and generate beautiful interactive HTML reports",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "anime",
+    "ratings",
+    "aggregator",
+    "myanimelist",
+    "anilist",
+    "imdb",
+    "report"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "cli-table3": "^0.6.5",
+    "mal-scraper": "^2.12.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustAsh-za/That-Time-I-Got-Reincarnated-As-A-Spreadsheet"
+  }
+}
