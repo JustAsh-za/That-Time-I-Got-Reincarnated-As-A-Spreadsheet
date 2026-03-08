@@ -2,7 +2,7 @@
 
 *When you die and wake up as an anime rating aggregator... but at least you have a really good sorting algorithm* 📊✨
 
-A powerful Node.js tool that aggregates anime ratings from multiple sources (MyAnimeList, AniList, and IMDb) and generates beautiful, interactive HTML reports to help you decide what to watch next from your backlog.
+A powerful Node.js tool that aggregates anime ratings from multiple sources (MyAnimeList, AniList, and IMDb) and generates interactive HTML reports to help you decide what to watch next from your backlog.
 
 ## Features
 
