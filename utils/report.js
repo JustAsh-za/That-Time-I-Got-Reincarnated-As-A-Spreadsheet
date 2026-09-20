@@ -14,8 +14,8 @@ function generateReport(results) {
 
     // 1. Console Table
     const table = new Table({
-        head: ['Rank', 'Title', 'Avg Rating', 'AniList', 'MAL', 'IMDb'],
-        colWidths: [6, 40, 12, 10, 10, 10]
+        head: ['Rank', 'Title', 'Avg Rating', 'AniList', 'MAL', 'IMDb', 'Status', 'Progress'],
+        colWidths: [6, 40, 12, 10, 10, 10, 12, 10]
     });
 
     results.forEach((item, index) => {
@@ -29,7 +29,9 @@ function generateReport(results) {
             item.averageRating.toFixed(2),
             al && al.rating ? al.rating : '-',
             mal && mal.rating ? mal.rating : '-',
-            imdb && imdb.rating ? imdb.rating : '-'
+            imdb && imdb.rating ? imdb.rating : '-',
+            item.status || 'backlog',
+            item.episodes ? `${item.progress || 0}/${item.episodes}` : `${item.progress || 0}`
         ]);
     });
 
@@ -46,6 +48,7 @@ function generateReport(results) {
         const description = item.description;
         const genres = item.genres.join(', ');
 
+        mdContent += `**Status:** ${item.status || 'backlog'}${item.episodes ? ` (${item.progress || 0}/${item.episodes} episodes)` : ''}\n\n`;
         mdContent += `**Genres:** ${genres}\n\n`;
         mdContent += `**Description:** ${description}\n\n`;
 

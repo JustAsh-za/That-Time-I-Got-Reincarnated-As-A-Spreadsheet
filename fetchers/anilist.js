@@ -7,10 +7,12 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetchAniList(title) {
+// Search by title, or fetch an exact record when the AniList id is known
+// (entries added through the UI store the id the user picked).
+async function fetchAniList(title, anilistId) {
   const query = `
-    query ($search: String) {
-      Media (search: $search, type: ANIME) {
+    query ($search: String, $id: Int) {
+      Media (search: $search, id: $id, type: ANIME) {
         id
         title {
           romaji
@@ -35,6 +37,21 @@ async function fetchAniList(title) {
           large
           color
         }
+        relations {
+          edges {
+            relationType
+            node {
+              id
+              type
+              title { romaji english }
+              format
+              episodes
+              seasonYear
+              status
+              coverImage { medium }
+            }
+          }
+        }
       }
     }
     `;
@@ -43,12 +60,27 @@ async function fetchAniList(title) {
     try {
       const response = await axios.post('https://graphql.anilist.co', {
         query: query,
-        variables: { search: title }
+        variables: anilistId ? { id: anilistId } : { search: title }
       });
 
       const data = response.data.data.Media;
       if (data) {
+        // First sequel relation, if any — powers the "next season" nudge
+        const sequelEdge = (data.relations?.edges || []).find(e =>
+          e.relationType === 'SEQUEL' && e.node?.type === 'ANIME');
+        const sequel = sequelEdge ? {
+          id: sequelEdge.node.id,
+          title: sequelEdge.node.title.english || sequelEdge.node.title.romaji,
+          format: sequelEdge.node.format,
+          episodes: sequelEdge.node.episodes,
+          year: sequelEdge.node.seasonYear,
+          status: sequelEdge.node.status,
+          image: sequelEdge.node.coverImage?.medium || null
+        } : null;
+
         return {
+          id: data.id,
+          sequel,
           title: data.title.english || data.title.romaji,
           rating: data.averageScore,
           description: data.description,

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const CACHE_FILE = path.join(__dirname, '../anime_cache.json');
-const CACHE_DURATION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const CACHE_DURATION_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 function loadCache() {
     if (!fs.existsSync(CACHE_FILE)) {

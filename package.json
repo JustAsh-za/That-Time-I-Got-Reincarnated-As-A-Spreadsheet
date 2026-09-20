@@ -4,7 +4,8 @@
   "description": "A Node.js tool to aggregate anime ratings from multiple sources (MyAnimeList, AniList, IMDb) and generate beautiful interactive HTML reports",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "serve": "node server.js"
   },
   "keywords": [
     "anime",

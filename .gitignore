@@ -1,13 +1,15 @@
 # Dependencies
 node_modules/
+node_modules.zip
 
 # Cache files
 anime_cache.json
+1anime_cache.json
 
-# Generated reports
+# Generated reports (root-level HTML only — utils/webapp/template.html must stay tracked)
 report.html
 report.md
-*.html
+/*.html
 
 # OS files
 .DS_Store
