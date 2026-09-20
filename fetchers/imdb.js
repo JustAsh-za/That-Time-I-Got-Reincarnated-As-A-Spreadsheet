@@ -1,11 +1,29 @@
 const axios = require('axios');
-const cheerio = require('cheerio');
 
-const IMDB_HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.9',
+// IMDb's HTML pages are behind an AWS WAF JS challenge (every request returns
+// HTTP 202 with a challenge page), so scraping no longer works. Instead we use
+// two JSON endpoints that are not challenged:
+//   1. Suggestion API - resolves a title string to an IMDb ID
+//   2. Public GraphQL API - returns rating, plot and genres for an ID
+const SUGGESTION_BASE = 'https://v2.sg.media-imdb.com/suggestion';
+const GRAPHQL_URL = 'https://api.graphql.imdb.com/';
+
+// api.graphql.imdb.com rejects unbranded clients with a bare nginx 403 (no
+// GraphQL error body). It only answers when the request looks like it came
+// from imdb.com itself, so a browser User-Agent plus Origin/Referer is
+// mandatory — without them every rating silently reads "Not Found (Error)".
+const BROWSER_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+    + '(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36';
+const GRAPHQL_HEADERS = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/graphql+json, application/json',
+    'User-Agent': BROWSER_UA,
+    'Origin': 'https://www.imdb.com',
+    'Referer': 'https://www.imdb.com/'
 };
+
+// qid values that represent actual titles (skips people/companies)
+const TITLE_TYPES = new Set(['tvSeries', 'movie', 'tvMovie', 'tvMiniSeries', 'video', 'tvSpecial', 'short']);
 
 const MAX_RETRIES = 3;
 const BASE_DELAY_MS = 2000;
@@ -14,10 +32,10 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function fetchWithRetry(url, options, retries = MAX_RETRIES) {
+async function requestWithRetry(fn, retries = MAX_RETRIES) {
     for (let attempt = 0; attempt <= retries; attempt++) {
         try {
-            return await axios.get(url, options);
+            return await fn();
         } catch (error) {
             const status = error.response?.status;
             if ((status === 429 || status === 503) && attempt < retries) {
@@ -31,95 +49,63 @@ async function fetchWithRetry(url, options, retries = MAX_RETRIES) {
     }
 }
 
+async function findImdbId(title) {
+    // Normalize typographic quotes/dashes — they break suggestion matching
+    const query = title.toLowerCase().trim()
+        .replace(/[‘’]/g, "'")
+        .replace(/[“”]/g, '"')
+        .replace(/[–—]/g, '-');
+    const firstChar = /^[a-z0-9]/.test(query) ? query[0] : 'x';
+    const url = `${SUGGESTION_BASE}/${firstChar}/${encodeURIComponent(query)}.json`;
+
+    const res = await requestWithRetry(() => axios.get(url, {
+        headers: { 'User-Agent': BROWSER_UA }
+    }));
+    const suggestions = res.data?.d || [];
+
+    const match = suggestions.find(s => s.id?.startsWith('tt') && TITLE_TYPES.has(s.qid));
+    return match || null;
+}
+
+async function fetchTitleDetails(imdbId) {
+    const query = `query {
+        title(id: "${imdbId}") {
+            titleText { text }
+            ratingsSummary { aggregateRating voteCount }
+            plot { plotText { plainText } }
+            titleGenres { genres { genre { text } } }
+        }
+    }`;
+
+    const res = await requestWithRetry(() => axios.post(GRAPHQL_URL, { query }, {
+        headers: GRAPHQL_HEADERS
+    }));
+
+    return res.data?.data?.title || null;
+}
+
 async function fetchIMDb(title) {
     try {
-        // 1. Get ID via Search Page Scrape
-        const encodedTitle = encodeURIComponent(title);
-        const searchUrl = `https://www.imdb.com/find?q=${encodedTitle}&s=tt`;
-
-        const searchRes = await fetchWithRetry(searchUrl, {
-            headers: IMDB_HEADERS
-        });
-
-        const $search = cheerio.load(searchRes.data);
-        const results = $search('a[href*="/title/tt"]');
-
-        let imdbId = null;
-        if (results.length > 0) {
-            // Check up to 30 returned links because the first 5 might be unrelated nav links on the IMDb page!
-            for (let i = 0; i < Math.min(results.length, 30); i++) {
-                const href = $search(results[i]).attr('href');
-                if (!href) continue;
-
-                const match = href.match(/tt\d+/);
-                if (match) {
-                    imdbId = match[0];
-                    break;
-                }
-            }
-        }
-
-        if (!imdbId) {
+        const match = await findImdbId(title);
+        if (!match) {
             return { source: 'IMDb', error: 'Not Found' };
         }
 
-        const bestMatch = { l: title };
-
-        // 2. Fetch Title Page Details
-        const detailUrl = `https://www.imdb.com/title/${imdbId}/`;
-        const detailRes = await fetchWithRetry(detailUrl, {
-            headers: IMDB_HEADERS
-        });
-
-        const $ = cheerio.load(detailRes.data);
-
-        // Extract data from JSON-LD structured data (much more reliable than CSS selectors)
-        let rating = null;
-        let description = 'N/A';
-        let genres = [];
-        let ldTitle = bestMatch.l;
-
-        const jsonLdScript = $('script[type="application/ld+json"]').first().html();
-        if (jsonLdScript) {
-            try {
-                const ld = JSON.parse(jsonLdScript);
-                rating = ld.aggregateRating?.ratingValue
-                    ? parseFloat(ld.aggregateRating.ratingValue)
-                    : null;
-                description = ld.description || 'N/A';
-                genres = Array.isArray(ld.genre) ? ld.genre : (ld.genre ? [ld.genre] : []);
-                ldTitle = ld.name || ldTitle;
-            } catch (parseErr) {
-                // JSON-LD parsing failed, fall back to CSS selectors
-            }
-        }
-
-        // Fallback to CSS selectors if JSON-LD didn't provide data
-        if (!rating) {
-            const ratingText = $('[data-testid="hero-rating-bar__aggregate-rating__score"] span').first().text();
-            rating = ratingText ? parseFloat(ratingText) : null;
-        }
-
-        if (description === 'N/A') {
-            const plotText = $('[data-testid="plot"] span').first().text();
-            if (plotText) description = plotText;
-        }
-
-        if (genres.length === 0) {
-            $('[data-testid="genres"] a').each((i, el) => {
-                genres.push($(el).text());
-            });
+        const details = await fetchTitleDetails(match.id);
+        if (!details) {
+            return { source: 'IMDb', error: 'Not Found' };
         }
 
         return {
             source: 'IMDb',
-            title: ldTitle,
-            rating: rating,
-            description: description,
-            genres: genres,
-            url: detailUrl
+            title: details.titleText?.text || match.l || title,
+            rating: details.ratingsSummary?.aggregateRating ?? null,
+            votes: details.ratingsSummary?.voteCount ?? null,
+            description: details.plot?.plotText?.plainText || 'N/A',
+            genres: (details.titleGenres?.genres || []).map(g => g.genre.text),
+            year: match.y || null,
+            url: `https://www.imdb.com/title/${match.id}/`
         };
-
     } catch (error) {
         console.error(`IMDb Error for ${title}:`, error.message);
         return { source: 'IMDb', error: 'Not Found (Error)' };
