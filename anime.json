@@ -1,46 +1,675 @@
 [
-    "Hunter × Hunter(2011)",
-    "Cowboy Bebop",
-    "Violet Evergarden",
-    "Great Teacher Onizuka",
-    "Lord of Mysteries",
-    "Steins;Gate",
-    "Mob Psycho 100",
-    "The Dangers in My Heart",
-    "Spice & Wolf",
-    "Secrets of the Silent Witch",
-    "Classroom of Elite",
-    "That Time I Got Reincarnated as a Slime",
-    "The Disastrous Life of Saiki K",
-    "Grand Blue Dreaming",
-    "Kaiju no 8",
-    "Call of the Night",
-    "KonoSuba",
-    "Kakegurui",
-    "Hai to Gensou no Grimgar",
-    "Goblin Slayer",
-    "Mashle: Magic and Muscles",
-    "Combatants Will Be Dispatched!",
-    "The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat",
-    "Bofuri: I Don't Want to Get Hurt, So I'll Max Out My Defense",
-    "Baccano!",
-    "Delicious in Dungeon",
-    "Vinland Saga",
-    "To Be Hero X",
-    "Alya Sometimes Hides Her Feelings in Russian",
-    "KILL la KILL",
-    "Fist of the North Star",
-    "Gachiakuta",
-    "Tatsuki Fujimoto 17-26",
-    "Fire Force",
-    "Black Clover",
-    "Trigun",
-    "Trigun Stampede",
-    "Fate/stay night: Unlimited Blade Works",
-    "Fate/stay night: Heaven's Feel",
-    "Fate/Zero",
-    "Journal with Witch",
-    "You and I Are Polar Opposites",
-    "Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing",
-    "The Invisible Man and His Soon-to-Be Wife"
+  {
+    "title": "Hunter × Hunter(2011)",
+    "status": "completed",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Cowboy Bebop",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Violet Evergarden",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Great Teacher Onizuka",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Lord of Mysteries",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Steins;Gate",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Mob Psycho 100",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "The Dangers in My Heart",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Spice & Wolf",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Secrets of the Silent Witch",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Classroom of Elite",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "That Time I Got Reincarnated as a Slime",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "The Disastrous Life of Saiki K",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Grand Blue Dreaming",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Kaiju no 8",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Call of the Night",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "KonoSuba",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Kakegurui",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Hai to Gensou no Grimgar",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Goblin Slayer",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Mashle: Magic and Muscles",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Combatants Will Be Dispatched!",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Bofuri: I Don't Want to Get Hurt, So I'll Max Out My Defense",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Baccano!",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Delicious in Dungeon",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Vinland Saga",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "To Be Hero X",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Alya Sometimes Hides Her Feelings in Russian",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "KILL la KILL",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Fist of the North Star",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Gachiakuta",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Tatsuki Fujimoto 17-26",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Fire Force",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Black Clover",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Trigun",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Trigun Stampede",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Fate/stay night: Unlimited Blade Works",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Fate/stay night: Heaven's Feel",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Fate/Zero",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Journal with Witch",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "You and I Are Polar Opposites",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Hell Mode: The Hardcore Gamer Dominates in Another World with Garbage Balancing",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "The Invisible Man and His Soon-to-Be Wife",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Tune In to the Midnight Heart",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Ascendance of a Bookworm",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Dorohedoro",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Daemons of the Shadow Realm",
+    "status": "watching",
+    "progress": 8,
+    "notes": ""
+  },
+  {
+    "title": "Nana",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Kaguya-sama: Love is War",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Sentenced to Be a Hero",
+    "status": "completed",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Neon Genesis Evangelion",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Princess Mononoke",
+    "status": "completed",
+    "progress": 1,
+    "notes": ""
+  },
+  {
+    "title": "Perfect Blue",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Ghost in the Shell",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Serial Experiments Lain",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Yu Yu Hakusho",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Revolutionary Girl Utena",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Berserk",
+    "status": "completed",
+    "progress": 25,
+    "notes": ""
+  },
+  {
+    "title": "Fullmetal Alchemist: Brotherhood",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Code Geass: Lelouch of the Rebellion",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Death Note",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Tengen Toppa Gurren Lagann",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Clannad",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Bakemonogatari",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "The Melancholy of Haruhi Suzumiya",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Monster",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "K-On!",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Toradora!",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Attack on Titan",
+    "status": "completed",
+    "progress": 25,
+    "notes": ""
+  },
+  {
+    "title": "Puella Magi Madoka Magica",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Monogatari Series",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Made in Abyss",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "March Comes in Like a Lion",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Release That Witch",
+    "status": "completed",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Nippon Sangoku: The Three Nations of the Crimson Sun",
+    "status": "backlog",
+    "progress": 0,
+    "notes": ""
+  },
+  {
+    "title": "Frieren: Beyond Journey’s End",
+    "status": "completed",
+    "progress": 28,
+    "notes": "",
+    "anilistId": 154587
+  },
+  {
+    "title": "THE GHOST IN THE SHELL",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 177699
+  },
+  {
+    "title": "Witch Hat Atelier",
+    "status": "completed",
+    "progress": 13,
+    "notes": "",
+    "anilistId": 147105
+  },
+  {
+    "title": "Naruto",
+    "status": "completed",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 20
+  },
+  {
+    "title": "Frieren: Beyond Journey’s End Season 2",
+    "status": "completed",
+    "progress": 10,
+    "notes": "",
+    "anilistId": 182255
+  },
+  {
+    "title": "Smoking Behind the Supermarket with You",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 196187
+  },
+  {
+    "title": "Mushoku Tensei: Jobless Reincarnation",
+    "status": "completed",
+    "progress": 11,
+    "notes": "",
+    "anilistId": 108465
+  },
+  {
+    "title": "Attack on Titan Season 2",
+    "status": "on-hold",
+    "progress": 8,
+    "notes": "",
+    "anilistId": 20958
+  },
+  {
+    "title": "Attack on Titan Season 3",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 99147
+  },
+  {
+    "title": "Attack on Titan Final Season",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 110277
+  },
+  {
+    "title": "Mushoku Tensei: Jobless Reincarnation Cour 2",
+    "status": "completed",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 127720
+  },
+  {
+    "title": "Mushoku Tensei: Jobless Reincarnation Season 2",
+    "status": "completed",
+    "progress": 13,
+    "notes": "",
+    "anilistId": 146065
+  },
+  {
+    "title": "Mushoku Tensei: Jobless Reincarnation Season 2 Part 2",
+    "status": "completed",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 166873
+  },
+  {
+    "title": "Mushoku Tensei: Jobless Reincarnation Season 3",
+    "status": "watching",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 178789
+  },
+  {
+    "title": "Naruto: Shippuden",
+    "status": "completed",
+    "progress": 500,
+    "notes": "",
+    "anilistId": 1735
+  },
+  {
+    "title": "Fullmetal Alchemist",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 121
+  },
+  {
+    "title": "Solo Leveling",
+    "status": "completed",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 151807
+  },
+  {
+    "title": "Solo Leveling Season 2 -Arise from the Shadow-",
+    "status": "completed",
+    "progress": 13,
+    "notes": "",
+    "anilistId": 176496
+  },
+  {
+    "title": "Solo Leveling: Beyond the System",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 213846
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba",
+    "status": "completed",
+    "progress": 26,
+    "notes": "",
+    "anilistId": 101922
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Mugen Train Arc",
+    "status": "completed",
+    "progress": 7,
+    "notes": "",
+    "anilistId": 129874
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Swordsmith Village Arc",
+    "status": "completed",
+    "progress": 11,
+    "notes": "",
+    "anilistId": 145139
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Hashira Training Arc",
+    "status": "completed",
+    "progress": 8,
+    "notes": "",
+    "anilistId": 166240
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+    "status": "completed",
+    "progress": 1,
+    "notes": "",
+    "anilistId": 178788
+  },
+  {
+    "title": "Demon Slayer: Kimetsu no Yaiba Entertainment District Arc",
+    "status": "completed",
+    "progress": 11,
+    "notes": "",
+    "anilistId": 142329
+  },
+  {
+    "title": "Jaadugar: A Witch in Mongolia",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 190569
+  },
+  {
+    "title": "Goodbye, Lara",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 177637
+  },
+  {
+    "title": "My Dress-Up Darling",
+    "status": "completed",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 132405
+  },
+  {
+    "title": "My Dress-Up Darling Season 2",
+    "status": "completed",
+    "progress": 12,
+    "notes": "",
+    "anilistId": 154768
+  },
+  {
+    "title": "The Exiled Heavy Knight Knows How to Game the System",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 180136
+  },
+  {
+    "title": "Though I Am an Inept Villainess",
+    "status": "backlog",
+    "progress": 0,
+    "notes": "",
+    "anilistId": 188139
+  }
 ]
