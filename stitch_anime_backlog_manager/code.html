@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Yume Library - Chainsaw Man</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#fcf9f3",
+                        "tertiary-fixed-dim": "#ffb874",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f6f3ed",
+                        "secondary": "#00668a",
+                        "on-secondary-fixed-variant": "#004c69",
+                        "tertiary-fixed": "#ffdcc0",
+                        "surface-container-highest": "#e5e2dc",
+                        "secondary-container": "#87d2fd",
+                        "primary-container": "#2d5a27",
+                        "surface-container": "#f0eee8",
+                        "surface-variant": "#e5e2dc",
+                        "on-primary-fixed": "#002201",
+                        "on-secondary-fixed": "#001e2c",
+                        "error": "#ba1a1a",
+                        "surface": "#fcf9f3",
+                        "secondary-fixed": "#c4e7ff",
+                        "on-tertiary-container": "#ffb268",
+                        "outline": "#72796e",
+                        "tertiary": "#572f00",
+                        "on-surface-variant": "#42493e",
+                        "surface-dim": "#dcdad4",
+                        "on-primary-container": "#9dd090",
+                        "on-tertiary-fixed-variant": "#6b3b00",
+                        "inverse-surface": "#31312d",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#84cffa",
+                        "tertiary-container": "#784300",
+                        "primary-fixed": "#bcf0ae",
+                        "inverse-on-surface": "#f3f0ea",
+                        "surface-tint": "#3b6934",
+                        "on-background": "#1c1c18",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#a1d494",
+                        "outline-variant": "#c2c9bb",
+                        "on-surface": "#1c1c18",
+                        "on-secondary-container": "#005b7c",
+                        "on-tertiary-fixed": "#2d1600",
+                        "primary": "#154212",
+                        "on-primary-fixed-variant": "#23501e",
+                        "background": "#fcf9f3",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#a1d494",
+                        "surface-container-high": "#ebe8e2",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "container-padding-desktop": "40px",
+                        "unit": "8px",
+                        "container-padding-mobile": "20px",
+                        "stack-gap": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["13px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .watercolor-bg {
+            background-image: radial-gradient(circle at 10% 20%, rgba(157, 208, 144, 0.05) 0%, transparent 20%),
+                              radial-gradient(circle at 90% 80%, rgba(132, 207, 250, 0.05) 0%, transparent 20%);
+        }
+        .grain-overlay::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+        .handwritten {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        .hero-shadow {
+            box-shadow: 0 10px 30px -5px rgba(45, 90, 39, 0.15);
+        }
+        .nav-active-indicator {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 z-[60] w-full px-container-padding-mobile py-4 flex justify-between items-center bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 rounded-full hover:bg-primary-container/20 transition-colors text-primary">menu</button>
+<h1 class="font-headline-md text-headline-md text-primary italic tracking-tight">Yume Library</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed hero-shadow">
+<img class="w-full h-full object-cover" data-alt="A soft, hand-painted digital illustration of a girl wearing a sun hat in the style of Studio Ghibli. The lighting is warm and golden, with gentle watercolor textures and a serene expression. The color palette consists of soft creams, sage greens, and warm sunlight yellows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDai8gX0O6GfPAMeKN4onO97nez5efr6jwhbPA2zckTlVb6uLdC9cNDKKhO424csbngfp_a7Fc3D879sb6JFrywgLEtjSwDFkyhvM3Z2fIu5vf8_XqaaZImqmolVKYHqJ01zaI_o3I1doAL7bT_RI5nenpVOuNUw2IWO3EJmRBFujSjvuXXhkNTOvmT5NsFVpLPXXBDfmLWw2RBQ-waIeucHxpaBSZH6X3SuTPEWiTDH7VgoZTMrYcIOw"/>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-32 max-w-5xl mx-auto px-container-padding-mobile md:px-container-padding-desktop watercolor-bg">
+<!-- Hero Section -->
+<section class="relative w-full rounded-[2rem] overflow-hidden mb-12 hero-shadow group">
+<div class="aspect-[16/9] w-full">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" data-alt="A lush, cinematic watercolor painting of a serene landscape with rolling green hills and a bright blue sky filled with massive, fluffy white clouds. In the foreground, a vibrant green field is dotted with small white and yellow wildflowers. The atmosphere is nostalgic and magical, reminiscent of classic Japanese animation backgrounds, with soft morning sunlight filtering through the trees." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdX0hBZp1tQp6HBeSeY_Qsrf-0yQyup_D1Z6iz4o3asqnMlAx8jT1AE_VVD4db1ju-B55av1BGKfTVS4niKlo1tsFSLhVNTauKUrkagQ4qmAPRH0rPLbO12c1z0qEX0PFqY9dMsffd-2NMtLyb-6V9gEFiUZGoXYo8BYZjGoxpN7XVxY4mT2m6on9K9gJthL91irXEWzLQ_oarBuLk0ftIdxhpl9_W9LtJrbGNgzHCubmWuQtwNq-70g"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-8 md:p-12">
+<div class="flex flex-wrap gap-3 mb-4">
+<span class="bg-secondary-container/90 text-on-secondary-container px-4 py-1 rounded-full text-label-sm font-label-sm backdrop-blur-sm">Action</span>
+<span class="bg-secondary-container/90 text-on-secondary-container px-4 py-1 rounded-full text-label-sm font-label-sm backdrop-blur-sm">Supernatural</span>
+</div>
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-2 leading-none">Chainsaw Man</h2>
+<p class="text-white/90 font-body-lg text-body-lg italic handwritten max-w-2xl">A boy trades his soul for the heart of a devil, hunting to survive in a world of monsters.</p>
+</div>
+</section>
+<!-- Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left Column: Details & Stats -->
+<div class="lg:col-span-8 space-y-12">
+<!-- Your Progress Section -->
+<section class="bg-surface-container-low rounded-3xl p-8 grain-overlay relative">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+                                Your Progress
+                            </h3>
+<p class="text-on-surface-variant text-label-sm font-label-sm mt-1 uppercase tracking-widest">Ongoing Narrative</p>
+</div>
+<div class="text-right">
+<span class="text-display-lg-mobile font-headline-md text-primary">08</span>
+<span class="text-on-surface-variant font-body-md">/ 12</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-4 bg-surface-container-highest rounded-full mb-8 overflow-hidden">
+<div class="h-full bg-primary-container w-[66%] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] transition-all duration-500"></div>
+</div>
+<!-- Counter Controls -->
+<div class="flex items-center gap-6">
+<button class="w-14 h-14 rounded-full border-2 border-primary-container text-primary flex items-center justify-center hover:bg-primary-container hover:text-on-primary transition-all active:scale-90 group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110">remove</span>
+</button>
+<div class="flex-1 text-center">
+<p class="font-body-lg text-body-lg text-primary italic">"Just a few more pages..."</p>
+</div>
+<button class="w-14 h-14 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:bg-primary shadow-lg hover:shadow-primary-container/20 transition-all active:scale-90 group">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110">add</span>
+</button>
+</div>
+</section>
+<!-- Synopsis & Personal Notes -->
+<section class="space-y-8">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Synopsis</h3>
+<p class="text-body-lg text-on-surface-variant leading-relaxed">
+                            Denji is a teenage boy living with a Chainsaw Devil named Pochita. Due to the debt his father left behind, he has been living a rock-bottom life while repaying his debt by harvesting devil corpses with Pochita. One day, Denji is betrayed and killed. As his consciousness fades, he makes a contract with Pochita and gets revived as "Chainsaw Man" — a man with a devil's heart.
+                        </p>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-3xl border border-primary-container/10 shadow-sm relative overflow-hidden">
+<div class="absolute -top-4 -right-4 w-24 h-24 bg-tertiary-container/5 rounded-full blur-2xl"></div>
+<h3 class="font-headline-md text-headline-md text-tertiary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined">edit_note</span>
+                            Personal Journal
+                        </h3>
+<p class="text-body-lg text-on-surface-variant handwritten leading-loose">
+                            The animation is breathtakingly cinematic. I particularly love the quiet moments between the chaos—the way the light hits the breakfast table or the sound of the rain. Denji's simple desires are heartbreaking in this world. Episode 8 was an absolute masterpiece of tension.
+                        </p>
+</div>
+</section>
+</div>
+<!-- Right Column: Metadata -->
+<aside class="lg:col-span-4 space-y-8">
+<div class="bg-surface-container rounded-3xl p-6 grain-overlay">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-[0.2em] mb-6 border-b border-primary-container/10 pb-4">Story Details</h4>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Studio</p>
+<p class="font-body-md text-on-surface font-semibold">MAPPA</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Season</p>
+<p class="font-body-md text-on-surface font-semibold">Fall 2022</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">movie</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Format</p>
+<p class="font-body-md text-on-surface font-semibold">TV Series (12 Eps)</p>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<div class="p-2 rounded-xl bg-primary-container/10 text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Source</p>
+<p class="font-body-md text-on-surface font-semibold">Manga by Tatsuki Fujimoto</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Floating Pebble Action -->
+<button class="w-full py-4 rounded-full bg-primary text-on-primary font-headline-md flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                    Continue Journey
+                </button>
+<div class="p-6 rounded-3xl bg-secondary-container/20 border border-secondary/10 flex items-center justify-center gap-4 group cursor-pointer hover:bg-secondary-container/30 transition-colors">
+<span class="material-symbols-outlined text-secondary">share</span>
+<span class="font-label-sm text-secondary font-bold tracking-widest">SHARE THIS STORY</span>
+</div>
+</aside>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-surface shadow-[0_-4px_24px_-4px_rgba(45,90,39,0.1)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-6 py-2 transition-all duration-300 scale-95 nav-active-indicator" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_library</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2 hover:bg-surface-container-high rounded-full transition-all" href="#">
+<span class="material-symbols-outlined">auto_stories</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Journal</span>
+</a>
+</nav>
+<script>
+        // Interactive +/- logic
+        let count = 8;
+        const total = 12;
+        const countDisplay = document.querySelectorAll('span.text-display-lg-mobile')[0];
+        const progressBar = document.querySelectorAll('.bg-primary-container.w-\\[66\\%\\]')[0];
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (!icon) return;
+
+                if (icon.innerText === 'add' && count < total) {
+                    count++;
+                } else if (icon.innerText === 'remove' && count > 0) {
+                    count--;
+                }
+                
+                updateUI();
+            });
+        });
+
+        function updateUI() {
+            countDisplay.innerText = count.toString().padStart(2, '0');
+            const percentage = (count / total) * 100;
+            progressBar.style.width = `${percentage}%`;
+        }
+
+        // Parallax effect on hero scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.group img');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.15}px) scale(1.05)`;
+            }
+        });
+    </script>
+</body></html>
